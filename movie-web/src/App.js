@@ -8,6 +8,7 @@ import Content from "./Content";
 import Home from "./routes/Home";
 import ForYou from "./routes/ForYou";
 import Search from "./routes/Search";
+import TopNav from "./components/TopNav";
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -29,6 +30,7 @@ function App() {
     <BrowserRouter>
       <Layout>
         <GlobalStyle />
+        <TopNav />
         <SideNav />
         <Content />
       </Layout>
