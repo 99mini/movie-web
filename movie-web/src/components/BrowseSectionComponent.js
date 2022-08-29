@@ -46,7 +46,6 @@ const Li = styled.li`
   padding: 0px 8px;
   cursor: pointer;
   width: 100%;
-  transition: transform 0.4s cubic-bezier(0.5, 0, 0.1, 1) 0s;
   vertical-align: bottom;
 
   @media screen and (min-width: 62em) {
@@ -57,6 +56,7 @@ const Li = styled.li`
 function BrowseSectionComponent() {
   const [isHover, setHover] = useState(false);
   const [sliderArticleCellList, setSliderArticleCellList] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const onMouseEnter = () => {
     setHover(true);
@@ -71,15 +71,36 @@ function BrowseSectionComponent() {
     setSliderArticleCellList(members);
   }, []);
 
+  const onClick = (e) => {
+    let currDirection = e.currentTarget.getAttribute("direction");
+    console.log(currDirection);
+    if (currDirection === "prev") {
+      if (currentIndex === 0) {
+        setCurrentIndex((currentIndex) => (currentIndex = -2));
+      } else {
+        setCurrentIndex((currentIndex) => (currentIndex = currentIndex + 1));
+      }
+    } else if (currDirection === "next") {
+      if (currentIndex === -2) {
+        setCurrentIndex((currentIndex) => (currentIndex = 0));
+      } else {
+        setCurrentIndex((currentIndex) => (currentIndex = currentIndex - 1));
+      }
+    } else {
+      throw Error;
+    }
+    console.log(sliderArticleCellList);
+    console.log(currentIndex);
+  };
+
   return (
     <BrowseSection>
       <SliderDiv onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-        <SliderBtn direction={"prev"} isHover={isHover} />
-        <Carousel>
+        <SliderBtn direction={"prev"} onClick={onClick} isHover={isHover} />
+        <Carousel currentIndex={currentIndex}>
           {sliderArticleCellList.map((cell, index) => (
-            <Li>
+            <Li key={cell.key}>
               <SlideArticleCell
-                key={index}
                 subtitle={cell.subtitle}
                 title={cell.title}
                 explanation={cell.explanation}
@@ -88,7 +109,7 @@ function BrowseSectionComponent() {
             </Li>
           ))}
         </Carousel>
-        <SliderBtn direction={"next"} isHover={isHover} />
+        <SliderBtn direction={"next"} onClick={onClick} isHover={isHover} />
       </SliderDiv>
     </BrowseSection>
   );

@@ -75,6 +75,7 @@ const Thumbnail = styled.img`
 `;
 function SlideArticleCell({ subtitle, title, explanation, thumbnailSrc }) {
   const [isHover, setHover] = useState(false);
+
   const onMouseEnter = () => {
     setHover(true);
   };

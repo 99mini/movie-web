@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -34,10 +34,7 @@ const SliderSpan = styled.span`
   height: 100%;
 `;
 
-function SliderBtn({ direction, isHover }) {
-  const onClick = () => {
-    console.log(direction);
-  };
+function SliderBtn({ direction, onClick, isHover = false }) {
   return (
     <SliderButton
       direction={direction}
@@ -73,6 +70,7 @@ function SliderBtn({ direction, isHover }) {
 
 SliderBtn.propTypes = {
   direction: PropTypes.string.isRequired,
+  isHover: PropTypes.bool.isRequired,
 };
 
 export default SliderBtn;
