@@ -11,6 +11,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  *,::before, ::after {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+
   body {
     margin: 0;
     background-color: #000000;

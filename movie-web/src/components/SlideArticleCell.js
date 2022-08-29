@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -65,6 +65,7 @@ const Figure = styled.figure`
 `;
 
 const Thumbnail = styled.img`
+  filter: ${(props) => (props.isHover ? "brightness(50%)" : "none")};
   position: absolute;
   inset: 0px;
   width: 100%;
@@ -73,8 +74,15 @@ const Thumbnail = styled.img`
   object-position: center center;
 `;
 function SlideArticleCell({ subtitle, title, explanation, thumbnailSrc }) {
+  const [isHover, setHover] = useState(false);
+  const onMouseEnter = () => {
+    setHover(true);
+  };
+  const onMouseLeave = () => {
+    setHover(false);
+  };
   return (
-    <Link>
+    <Link onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <Layout>
         <SubTitleColumn>
           <Span>{subtitle}</Span>
@@ -82,7 +90,7 @@ function SlideArticleCell({ subtitle, title, explanation, thumbnailSrc }) {
           <P>{explanation}</P>
         </SubTitleColumn>
         <Figure>
-          <Thumbnail src={thumbnailSrc} />
+          <Thumbnail src={thumbnailSrc} isHover={isHover} />
         </Figure>
       </Layout>
     </Link>

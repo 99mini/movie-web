@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import SliderBtn from "./SliderBtn";
@@ -11,12 +11,12 @@ const BrowseSection = styled.section`
 const SliderDiv = styled.div`
   position: relative;
 
-  &:before {
+  &::before {
     left: -40px;
     background: linear-gradient(90deg, rgb(0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
   }
 
-  &:after {
+  &::after {
     right: -40px;
     background: linear-gradient(
       270deg,
@@ -25,8 +25,8 @@ const SliderDiv = styled.div`
     );
   }
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: "";
     display: block;
     position: absolute;
@@ -59,10 +59,17 @@ const Li = styled.li`
 `;
 
 function BrowseSectionComponent() {
+  const [isHover, setHover] = useState(false);
+  const onMouseEnter = () => {
+    setHover(true);
+  };
+  const onMouseLeave = () => {
+    setHover(false);
+  };
   return (
     <BrowseSection>
-      <SliderDiv>
-        <SliderBtn direction={"prev"} />
+      <SliderDiv onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+        <SliderBtn direction={"prev"} isHover={isHover} />
         <UlArticle>
           <Li>
             <SlideArticleCell
@@ -89,7 +96,7 @@ function BrowseSectionComponent() {
             />
           </Li>
         </UlArticle>
-        <SliderBtn direction={"next"} />
+        <SliderBtn direction={"next"} isHover={isHover} />
       </SliderDiv>
     </BrowseSection>
   );
