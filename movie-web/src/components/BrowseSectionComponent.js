@@ -16,6 +16,15 @@ const SliderDiv = styled.div`
     background: linear-gradient(90deg, rgb(0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
   }
 
+  &:after {
+    right: -40px;
+    background: linear-gradient(
+      270deg,
+      rgb(0, 0, 0) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
   &:before,
   &:after {
     content: "";
@@ -49,7 +58,7 @@ const Li = styled.li`
   }
 `;
 
-function BroweSectionComponent() {
+function BrowseSectionComponent() {
   return (
     <BrowseSection>
       <SliderDiv>
@@ -71,6 +80,14 @@ function BroweSectionComponent() {
               thumbnailSrc="https://an2-img.amz.wtchn.net/image/v2/dUb5xLtCeaCQ_Sc9c7OYWA.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKdmNIUnpJanBiSW1KbklsMHNJbkFpT2lJdmRqSXZjM1J2Y21VdmFXMWhaMlV2TVRZMk1USXlNakl5TWpNd016Z3dPVEkxT0NJc0luRWlPamd3ZlEucjBfSDh5RVZDVl81YmpFSExmWUhteXFvVF9zMF96OGRtWnREMFlkWjNpZw"
             />
           </Li>
+          <Li>
+            <SlideArticleCell
+              subtitle="추천작"
+              title="미드소마 감독판"
+              explanation="집단 찐 광기의 현장, “이런 축제는 처음이야”"
+              thumbnailSrc="https://an2-img.amz.wtchn.net/image/v2/cTeKR7IdfrD7dsxx9Mwj0w.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKdmNIUnpJanBiSW1KbklsMHNJbkFpT2lJdmRqSXZjM1J2Y21VdmFXMWhaMlV2TVRZMk1USXpOamM1TURNek1UazROakEzTkNJc0luRWlPamd3ZlEubnRTekNWV0R6cG5YbkNnbm93dDg2b2Iwb1BBOUR3ZFNNVnlyTWt1OUdIdw"
+            />
+          </Li>
         </UlArticle>
         <SliderBtn direction={"next"} />
       </SliderDiv>
@@ -78,4 +95,4 @@ function BroweSectionComponent() {
   );
 }
 
-export default BroweSectionComponent;
+export default BrowseSectionComponent;

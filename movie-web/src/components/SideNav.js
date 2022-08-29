@@ -22,6 +22,12 @@ const SideNavBar = styled.nav`
   border-right: 1px #1b1c1d solid;
 `;
 
+const IconSpan = styled.span`
+  position: relative;
+  padding-right: 8px;
+  bottom: -2px;
+`;
+
 function SideNav() {
   return (
     <SideNavBar>
@@ -34,19 +40,25 @@ function SideNav() {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link to="/" active={isActive("/")}>
-              <FaIcons.FaHome />
+              <IconSpan>
+                <FaIcons.FaHome />
+              </IconSpan>
               Home
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link to="/for_you" active={isActive("/for_you")}>
-              <FaIcons.FaVideo />
+              <IconSpan>
+                <FaIcons.FaVideo />
+              </IconSpan>
               Find
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link to="/search" active={isActive("/search")}>
-              <FaIcons.FaSearch />
+              <IconSpan>
+                <FaIcons.FaSearch />
+              </IconSpan>
               Search
             </Nav.Link>
           </Nav.Item>
