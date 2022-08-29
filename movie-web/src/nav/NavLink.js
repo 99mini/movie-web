@@ -10,7 +10,7 @@ const Link = styled.a`
   margin: 0 calc(20px * -1);
   padding: 8px 20px;
   border-radius: 4px;
-  color: #ffffff;
+  color: #e8e8e8;
   text-decoration: none;
 
   &:not([href]) {

@@ -1,45 +1,64 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import styled, { createGlobalStyle } from "styled-components";
 
 import SideNav from "./components/SideNav";
 import Content from "./Content";
 
-import Home from "./routes/Home";
-import ForYou from "./routes/ForYou";
-import Search from "./routes/Search";
 import TopNav from "./components/TopNav";
 
 export const GlobalStyle = createGlobalStyle`
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0;
-    background-color: #141517;
+    background-color: #000000;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  ol, ul {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+    margin-block: 0px;
+    margin-inline: 0px;
+    padding-inline-start: 0px;
+  }
+
+  hr{
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
   }
 `;
 
-const Layout = styled.div`
+const NavLayout = styled.div`
   display: flex;
   justify-content: space-between;
-  color: #a7a9be;
+  color: #e8e8e8;
   font-size: 1.5rem;
   font-family: sans-serif;
+  flex-direction: column;
+  height: 100%;
+  padding: 56px 0 0 240px;
 `;
 
 function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <GlobalStyle />
-        <TopNav />
-        <SideNav />
-        <Content />
-      </Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/for_you" element={<ForYou />} />
-        <Route path="/search" element={<Search />} />
-      </Routes>
-    </BrowserRouter>
+    <NavLayout>
+      <GlobalStyle />
+      <TopNav />
+      <SideNav />
+      <Content />
+    </NavLayout>
   );
 }
 
