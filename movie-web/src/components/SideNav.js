@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { ReactComponent as WatchaLogo } from "../assets/svg/WatchaLogo.svg";
 
 import * as FaIcons from "react-icons/fa";
+import * as MdIcons from "react-icons/md";
+import * as HiIcons from "react-icons/hi";
 
 const SideNavBar = styled.nav`
   position: fixed;
@@ -44,25 +46,49 @@ function SideNav() {
           <Nav.Item>
             <Nav.Link to="/" active={isActive("/")}>
               <IconSpan>
-                <FaIcons.FaHome />
+                <HiIcons.HiOutlineHome />
               </IconSpan>
-              Home
+              홈
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link to="/for_you" active={isActive("/for_you")}>
               <IconSpan>
-                <FaIcons.FaVideo />
+                <MdIcons.MdOutlineVideoLibrary />
               </IconSpan>
-              Find
+              발견
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link to="/search" active={isActive("/search")}>
               <IconSpan>
-                <FaIcons.FaSearch />
+                <MdIcons.MdSearch />
               </IconSpan>
-              Search
+              찾기
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link to="/evaluate" active={isActive("/evaluate")}>
+              <IconSpan>
+                <HiIcons.HiOutlineStar />
+              </IconSpan>
+              평가하기
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link to="/library" active={isActive("/library")}>
+              <IconSpan>
+                <MdIcons.MdOutlineTableRows />
+              </IconSpan>
+              보관함
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link to="/watched" active={isActive("/watched")}>
+              <IconSpan>
+                <MdIcons.MdOutlineCheckBox />
+              </IconSpan>
+              다 본 컨텐츠
             </Nav.Link>
           </Nav.Item>
         </Nav.List>

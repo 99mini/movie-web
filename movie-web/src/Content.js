@@ -2,6 +2,9 @@ import styled from "styled-components";
 import Home from "./routes/Home";
 import ForYou from "./routes/ForYou";
 import Search from "./routes/Search";
+import Evaluate from "./routes/Evaluate";
+import Library from "./routes/Library";
+import Wacthed from "./routes/Watched";
 
 const Main = styled.main`
   flex: 3;
@@ -30,7 +33,24 @@ function Content() {
           <Search />
         </Main>
       );
-
+    case "/evaluate":
+      return (
+        <Main>
+          <Evaluate />
+        </Main>
+      );
+    case "/library":
+      return (
+        <Main>
+          <Library />
+        </Main>
+      );
+    case "/watched":
+      return (
+        <Main>
+          <Wacthed />
+        </Main>
+      );
     default:
       return (
         <Main>
