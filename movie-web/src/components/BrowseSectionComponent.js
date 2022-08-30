@@ -47,11 +47,14 @@ const Li = styled.li`
   cursor: pointer;
   width: 100%;
   vertical-align: bottom;
-
   @media screen and (min-width: 62em) {
     width: 50%;
   }
 `;
+
+const em = parseFloat(
+  getComputedStyle(document.querySelector("body"))["font-size"]
+);
 
 function BrowseSectionComponent() {
   const [isHover, setHover] = useState(false);
@@ -65,6 +68,7 @@ function BrowseSectionComponent() {
     setHover(false);
   };
 
+  // get Carouse Member (json)
   useEffect(() => {
     let members = carouselMembers.members;
     members = Object.values(members);
@@ -72,16 +76,23 @@ function BrowseSectionComponent() {
   }, []);
 
   const onClick = (e) => {
+    let screen = window.innerWidth < 62 * em ? 1 : 2;
+
     let currDirection = e.currentTarget.getAttribute("direction");
-    console.log(currDirection);
+    let mediaLength = sliderArticleCellList.length;
+    let showingArticle = mediaLength / screen;
+
+    // 화면에 2개 씩 보일 경우 => showingArticle
     if (currDirection === "prev") {
       if (currentIndex === 0) {
-        setCurrentIndex((currentIndex) => (currentIndex = -2));
+        setCurrentIndex(
+          (currentIndex) => (currentIndex = -1 * (showingArticle - 1))
+        );
       } else {
         setCurrentIndex((currentIndex) => (currentIndex = currentIndex + 1));
       }
     } else if (currDirection === "next") {
-      if (currentIndex === -2) {
+      if (currentIndex === -1 * (showingArticle - 1)) {
         setCurrentIndex((currentIndex) => (currentIndex = 0));
       } else {
         setCurrentIndex((currentIndex) => (currentIndex = currentIndex - 1));
@@ -89,8 +100,6 @@ function BrowseSectionComponent() {
     } else {
       throw Error;
     }
-    console.log(sliderArticleCellList);
-    console.log(currentIndex);
   };
 
   return (
