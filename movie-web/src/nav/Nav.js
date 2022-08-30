@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Navigation = styled.nav`
-  min-width: 240px;
-  width: 240px;
-  height: 100vh;
-  background-color: #141517;
+const Navigation = styled.section`
+  padding: 0 16px;
+  margin: 30px 0 0;
 `;
 
 function Nav({ children }) {

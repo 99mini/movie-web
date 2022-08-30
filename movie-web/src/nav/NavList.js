@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 0 16px;
   list-style: none;
 `;
 

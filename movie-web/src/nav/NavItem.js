@@ -2,7 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Item = styled.li`
-  margin: 8px;
+  align-self: stretch;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 `;
 
 function NavItem({ children }) {

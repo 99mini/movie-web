@@ -68,7 +68,7 @@ function BrowseSectionComponent() {
     setHover(false);
   };
 
-  // get Carouse Member (json)
+  // get Carousel Member (json)
   useEffect(() => {
     let members = carouselMembers.members;
     members = Object.values(members);

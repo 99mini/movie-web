@@ -7,10 +7,6 @@ import { ReactComponent as WatchaLogo } from "../assets/svg/WatchaLogo.svg";
 
 import * as FaIcons from "react-icons/fa";
 
-function isActive(path) {
-  return window.location.pathname.startsWith(path);
-}
-
 const SideNavBar = styled.nav`
   position: fixed;
   top: 0;
@@ -28,16 +24,23 @@ const IconSpan = styled.span`
   bottom: -2px;
 `;
 
+const Logo = styled.a`
+  display: block;
+  margin: 24px 0 0 26px;
+`;
+
 function SideNav() {
+  const isActive = (path) => {
+    return window.location.pathname.startsWith(path);
+  };
+
   return (
     <SideNavBar>
+      <Logo href="/" active={isActive("/")}>
+        <WatchaLogo width="88px" height="26px" />
+      </Logo>
       <Nav>
         <Nav.List>
-          <Nav.Item>
-            <Nav.Link to="/" active={isActive("/")}>
-              <WatchaLogo width="88px" height="26px" />
-            </Nav.Link>
-          </Nav.Item>
           <Nav.Item>
             <Nav.Link to="/" active={isActive("/")}>
               <IconSpan>
