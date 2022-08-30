@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 import { ReactComponent as WatchaLogo } from "../assets/svg/WatchaLogo.svg";
 
-import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
 import * as HiIcons from "react-icons/hi";
 

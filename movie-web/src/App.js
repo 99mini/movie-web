@@ -1,9 +1,9 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 import SideNav from "./components/SideNav";
-import Content from "./Content";
-
+import Footer from "./components/Footer";
 import TopNav from "./components/TopNav";
+import Content from "./Content";
 
 export const GlobalStyle = createGlobalStyle`
   *{
@@ -63,6 +63,7 @@ function App() {
       <TopNav />
       <SideNav />
       <Content />
+      <Footer />
     </NavLayout>
   );
 }
