@@ -7,11 +7,11 @@ import Carousel from "./Carousel";
 
 import carouselMembers from "../assets/json/carouselMembers.json";
 
-const BrowseSection = styled.section`
+const SectionBrowseComponent = styled.section`
   margin-bottom: 32px;
 `;
 
-const SliderDiv = styled.div`
+const DivSlider = styled.div`
   position: relative;
 
   &::before {
@@ -103,8 +103,8 @@ function BrowseSectionComponent() {
   };
 
   return (
-    <BrowseSection>
-      <SliderDiv onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <SectionBrowseComponent>
+      <DivSlider onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <SliderBtn direction={"prev"} onClick={onClick} isHover={isHover} />
         <Carousel currentIndex={currentIndex}>
           {sliderArticleCellList.map((cell, index) => (
@@ -119,8 +119,8 @@ function BrowseSectionComponent() {
           ))}
         </Carousel>
         <SliderBtn direction={"next"} onClick={onClick} isHover={isHover} />
-      </SliderDiv>
-    </BrowseSection>
+      </DivSlider>
+    </SectionBrowseComponent>
   );
 }
 
