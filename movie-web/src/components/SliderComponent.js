@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import SliderBtn from "./SliderBtn";
-import SlideArticleCell from "./SlideArticleCell";
 import Carousel from "./Carousel";
 
-import carouselMembers from "../assets/json/carouselMembers.json";
-
-const SectionBrowseComponent = styled.section`
-  margin-bottom: 32px;
-`;
-
-const DivSlider = styled.div`
+const SliderDiv = styled.div`
   position: relative;
 
   &::before {
@@ -40,25 +33,24 @@ const DivSlider = styled.div`
   }
 `;
 
-const Li = styled.li`
-  display: inline-block;
-  position: relative;
-  padding: 0px 8px;
-  cursor: pointer;
-  width: 100%;
-  vertical-align: bottom;
-  @media screen and (min-width: 62em) {
-    width: 50%;
-  }
-`;
+// const Li = styled.li`
+//   display: inline-block;
+//   position: relative;
+//   padding: 0px 8px;
+//   cursor: pointer;
+//   width: 100%;
+//   vertical-align: bottom;
+//   @media screen and (min-width: 62em) {
+//     width: 50%;
+//   }
+// `;
 
 const em = parseFloat(
   getComputedStyle(document.querySelector("body"))["font-size"]
 );
 
-function BrowseSectionComponent() {
+function SliderComponent({ children, data }) {
   const [isHover, setHover] = useState(false);
-  const [sliderArticleCellList, setSliderArticleCellList] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const onMouseEnter = () => {
@@ -68,18 +60,11 @@ function BrowseSectionComponent() {
     setHover(false);
   };
 
-  // get Carousel Member (json)
-  useEffect(() => {
-    let members = carouselMembers.members;
-    members = Object.values(members);
-    setSliderArticleCellList(members);
-  }, []);
-
   const onClick = (e) => {
     let screen = window.innerWidth < 62 * em ? 1 : 2;
 
     let currDirection = e.currentTarget.getAttribute("direction");
-    let mediaLength = sliderArticleCellList.length;
+    let mediaLength = data.length;
     let showingArticle = mediaLength / screen;
 
     // 화면에 2개 씩 보일 경우 => showingArticle
@@ -103,11 +88,11 @@ function BrowseSectionComponent() {
   };
 
   return (
-    <SectionBrowseComponent>
-      <DivSlider onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-        <SliderBtn direction={"prev"} onClick={onClick} isHover={isHover} />
-        <Carousel currentIndex={currentIndex}>
-          {sliderArticleCellList.map((cell, index) => (
+    <SliderDiv onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      <SliderBtn direction={"prev"} onClick={onClick} isHover={isHover} />
+      <Carousel currentIndex={currentIndex}>
+        {children}
+        {/* {sliderArticleCellList.map((cell, index) => (
             <Li key={cell.key}>
               <SlideArticleCell
                 subtitle={cell.subtitle}
@@ -116,12 +101,11 @@ function BrowseSectionComponent() {
                 thumbnailSrc={cell.thumbnailSrc}
               ></SlideArticleCell>
             </Li>
-          ))}
-        </Carousel>
-        <SliderBtn direction={"next"} onClick={onClick} isHover={isHover} />
-      </DivSlider>
-    </SectionBrowseComponent>
+          ))} */}
+      </Carousel>
+      <SliderBtn direction={"next"} onClick={onClick} isHover={isHover} />
+    </SliderDiv>
   );
 }
 
-export default BrowseSectionComponent;
+export default SliderComponent;
