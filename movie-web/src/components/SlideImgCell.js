@@ -2,8 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import PropsType from "prop-types";
 
+import { SelectIndex } from "../constants/Constants";
+
 const ArticleItem = styled.article`
   display: block;
+  visibility: ${(props) =>
+    props.isHover === SelectIndex.SELECTED ? "hidden" : "visible"};
 `;
 
 const AItem = styled.a`
@@ -32,9 +36,9 @@ const ImgItem = styled.img`
   object-fit: cover;
 `;
 
-function SlideImgCell({ imgSrc, title, limit, runningTime, tags }) {
+function SlideImgCell({ imgSrc, title, limit, runningTime, tags, isHover }) {
   return (
-    <ArticleItem>
+    <ArticleItem isHover={isHover}>
       <AItem>
         <DivItem>
           <DivImgWrapper>

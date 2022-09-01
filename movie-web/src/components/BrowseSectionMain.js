@@ -33,7 +33,7 @@ function BrowseSectionMain() {
 
   return (
     <BrowseSection>
-      <SliderComponent data={sliderArticleCellList}>
+      <SliderComponent data={sliderArticleCellList} screenInfo={"Main"}>
         {sliderArticleCellList.map((cell, index) => (
           <Li key={cell.key}>
             <SlideArticleCell

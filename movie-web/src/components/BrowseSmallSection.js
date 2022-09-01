@@ -9,12 +9,7 @@ import mainContentMembers from "../assets/json/mainContentMembers.json";
 import SlideImgCell from "./SlideImgCell";
 import SlideImgHoverCell from "./SlideImgHoverCell";
 
-const SelectIndex = {
-  DEFAULT: 0,
-  LEFT: 1,
-  SELECTED: 2,
-  RIGHT: 3,
-};
+import { SelectIndex } from "../constants/Constants";
 
 const BrowseSection = styled.section`
   margin-bottom: 32px;
@@ -120,7 +115,7 @@ function BrowseSmallSection() {
     setIsHoverList(prevState);
   };
 
-  const onMouseLeave = (e, index) => {
+  const onMouseLeave = (e) => {
     setIsHover((isHover) => (isHover = false));
     setIsHoverList(
       (isHoverList) => (isHoverList = isHoverList.fill(SelectIndex.DEFAULT))
@@ -138,13 +133,10 @@ function BrowseSmallSection() {
     );
   }, []);
 
-  console.log(isHoverList);
-  console.log(isHover);
-
   return (
     <BrowseSection>
       <SectionTitleBar title={"새로운 에피소드"} isShowMoreBtn={true} />
-      <SliderComponent data={sliderArticleCellList}>
+      <SliderComponent data={sliderArticleCellList} screenInfo="Small">
         {sliderArticleCellList.map((cell, index) => (
           <Li
             id={index}
@@ -152,9 +144,12 @@ function BrowseSmallSection() {
             isHover={isHover}
             isHoverList={isHoverList[index]}
             onMouseEnter={(e) => onMouseEnter(e, index)}
-            onMouseLeave={(e) => onMouseLeave(e, index)}
+            onMouseLeave={(e) => onMouseLeave(e)}
           >
-            <SlideImgCell imgSrc={cell.thumbnailSrc}></SlideImgCell>
+            <SlideImgCell
+              imgSrc={cell.thumbnailSrc}
+              isHover={isHoverList[index]}
+            ></SlideImgCell>
             <SlideImgHoverCell></SlideImgHoverCell>
           </Li>
         ))}

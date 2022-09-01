@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import PropsTpyes from "prop-types";
 
 import SliderBtn from "./SliderBtn";
 import Carousel from "./Carousel";
@@ -49,9 +50,39 @@ const em = parseFloat(
   getComputedStyle(document.querySelector("body"))["font-size"]
 );
 
-function SliderComponent({ children, data }) {
+function SliderComponent({ children, data, screenInfo }) {
   const [isHover, setHover] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  let screen;
+  switch (screenInfo) {
+    case "Main":
+      screen = window.innerWidth < 62 * em ? 1 : 2;
+      break;
+    case "Small":
+      let currentWindowWidth = window.innerWidth;
+      console.log(currentWindowWidth, em * 71);
+
+      if (currentWindowWidth < 56 * em) {
+        screen = 4;
+      } else if (currentWindowWidth < 62 * em) {
+        screen = 5;
+      } else if (currentWindowWidth < 71 * em) {
+        screen = 6;
+      } else {
+        screen = 3;
+      }
+      break;
+
+    // TODO Rank
+    case "Rank":
+      break;
+    default:
+      break;
+  }
+  console.log(data.length, screen);
+  let showingArticle = parseInt(data.length / screen);
+  console.log(showingArticle);
 
   const onMouseEnter = () => {
     setHover(true);
@@ -61,11 +92,7 @@ function SliderComponent({ children, data }) {
   };
 
   const onClick = (e) => {
-    let screen = window.innerWidth < 62 * em ? 1 : 2;
-
     let currDirection = e.currentTarget.getAttribute("direction");
-    let mediaLength = data.length;
-    let showingArticle = mediaLength / screen;
 
     // 화면에 2개 씩 보일 경우 => showingArticle
     if (currDirection === "prev") {
@@ -85,6 +112,7 @@ function SliderComponent({ children, data }) {
     } else {
       throw Error;
     }
+    console.log(currentIndex);
   };
 
   return (
@@ -107,5 +135,11 @@ function SliderComponent({ children, data }) {
     </SliderDiv>
   );
 }
+
+SliderComponent.propsTypes = {
+  children: PropsTpyes.element,
+  data: PropsTpyes.array.isRequired,
+  screenInfo: PropsTpyes.string.isRequired,
+};
 
 export default SliderComponent;
