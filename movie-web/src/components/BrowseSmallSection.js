@@ -95,10 +95,6 @@ const Li = styled.li`
   }}
 `;
 
-// TODO
-// Hover를 기준으로 왼쪽은 -x % 이동 오른쪽은 + x % 이동
-// Hover 된 엘리먼트는 0%
-
 function BrowseSmallSection() {
   const [sliderArticleCellList, setSliderArticleCellList] = useState([]);
   const [isHoverList, setIsHoverList] = useState();
@@ -150,7 +146,10 @@ function BrowseSmallSection() {
               imgSrc={cell.thumbnailSrc}
               isHover={isHoverList[index]}
             ></SlideImgCell>
-            <SlideImgHoverCell></SlideImgHoverCell>
+            <SlideImgHoverCell
+              imgSrc={cell.thumbnailSrc}
+              isHover={isHoverList[index]}
+            ></SlideImgHoverCell>
           </Li>
         ))}
       </SliderComponent>

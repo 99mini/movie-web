@@ -61,7 +61,6 @@ function SliderComponent({ children, data, screenInfo }) {
       break;
     case "Small":
       let currentWindowWidth = window.innerWidth;
-      console.log(currentWindowWidth, em * 71);
 
       if (currentWindowWidth < 56 * em) {
         screen = 4;
@@ -80,9 +79,8 @@ function SliderComponent({ children, data, screenInfo }) {
     default:
       break;
   }
-  console.log(data.length, screen);
+
   let showingArticle = parseInt(data.length / screen);
-  console.log(showingArticle);
 
   const onMouseEnter = () => {
     setHover(true);
@@ -112,7 +110,6 @@ function SliderComponent({ children, data, screenInfo }) {
     } else {
       throw Error;
     }
-    console.log(currentIndex);
   };
 
   return (
