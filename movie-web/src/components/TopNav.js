@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import Profile from "../assets/images/Profile01.jpg";
+import { ReactComponent as NewProfile } from "../assets/svg/NewProfile.svg";
 
 const Header = styled.header`
   position: fixed;
@@ -67,8 +68,8 @@ const DivDropDown = styled.div`
   width: auto;
   height: auto;
   outline: none;
-  top: 32px;
-  right: 0px;
+  top: 48px;
+  right: 32px;
 `;
 
 const UlDropDown = styled.ul`
@@ -84,16 +85,7 @@ const UlDropDown = styled.ul`
   overflow: hidden;
 `;
 
-const LiDropDown = styled.li`
-  &:button {
-    cursor: pointer;
-    border: 0px none transparent;
-    outline: none 0px;
-    background: none;
-    appearance: initial;
-    padding: 0px;
-  }
-`;
+const LiDropDown = styled.li``;
 
 const DivDropDownItem = styled.div`
   display: flex;
@@ -112,6 +104,32 @@ const DivDropDownItem = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  &:hover {
+    background: rgb(51, 52, 54);
+  }
+  & > svg {
+    margin-right: 8px;
+  }
+`;
+
+const HrDivider = styled.hr`
+  background-color: rgb(56, 57, 61);
+  width: 100%;
+  height: 1px;
+  padding: 0px;
+  margin: 4px 0px;
+  border: none;
+`;
+
+const BtnDropDownItem = styled.button`
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 0px none transparent;
+  outline: none 0px;
+  background: none;
+  appearance: initial;
+  padding: 0px;
 `;
 
 const DivDropDownItemKid = styled.div`
@@ -123,6 +141,45 @@ const DivDropDownItemKid = styled.div`
   border-radius: 50%;
   margin: 0px 8px 0px 0px;
 `;
+
+const DivDropDownItemText = styled.div`
+  flex: 1 1 0%;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const ADropDownItem = styled.a`
+  display: block;
+  width: 100%;
+`;
+
+function KidImg() {
+  return <DivDropDownItemKid />;
+}
+
+function BtnProfileListItem({ children = null, text }) {
+  return (
+    <LiDropDown>
+      <BtnDropDownItem>
+        <DivDropDownItem>
+          {children}
+          <DivDropDownItemText>{text}</DivDropDownItemText>
+        </DivDropDownItem>
+      </BtnDropDownItem>
+    </LiDropDown>
+  );
+}
+
+function AProfileListItem({ href, text }) {
+  return (
+    <LiDropDown>
+      <ADropDownItem href={href}>
+        <DivDropDownItem>{text}</DivDropDownItem>
+      </ADropDownItem>
+    </LiDropDown>
+  );
+}
 
 function TopNav() {
   const [isClicked, setIsClicked] = useState(false);
@@ -145,13 +202,21 @@ function TopNav() {
         </DivProfileMainWrapper>
         <DivDropDown isClicked={isClicked}>
           <UlDropDown>
-            <LiDropDown>
-              <button>
-                <DivDropDownItem>
-                  <DivDropDownItemKid></DivDropDownItemKid>
-                </DivDropDownItem>
-              </button>
-            </LiDropDown>
+            <BtnProfileListItem text={"키즈"}>
+              <KidImg />
+            </BtnProfileListItem>
+            <BtnProfileListItem text={"새 프로필"}>
+              <NewProfile />
+            </BtnProfileListItem>
+            <HrDivider />
+            <AProfileListItem herf="" text={"프로필 편집"} />
+            <HrDivider />
+            <AProfileListItem herf="" text={"설정"} />
+            <AProfileListItem herf="" text={"공지사항"} />
+            <AProfileListItem herf="" text={"평가하기"} />
+            <AProfileListItem herf="" text={"초대하기"} />
+            <AProfileListItem herf="" text={"고객센터"} />
+            <AProfileListItem herf="" text={"로그아웃"} />
           </UlDropDown>
         </DivDropDown>
       </Nav>
