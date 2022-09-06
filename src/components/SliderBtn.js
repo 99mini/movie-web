@@ -7,7 +7,7 @@ const SliderButton = styled.button`
   color: rgb(186, 186, 193);
   width: 40px;
   height: 100%;
-  padding: 57px 0px 0px;
+  padding: ${(props) => (props.screenInfo === "Main" ? "57px 0px 0px" : "0px")};
   border: 0px;
   outline: none;
   appearance: none;
@@ -34,13 +34,14 @@ const SliderSpan = styled.span`
   height: 100%;
 `;
 
-function SliderBtn({ direction, onClick, isHover = false }) {
+function SliderBtn({ direction, onClick, screenInfo, isHover = false }) {
   return (
     <SliderButton
       direction={direction}
       isHover={isHover}
       type="button"
       onClick={onClick}
+      screenInfo={screenInfo}
     >
       <SliderSpan>
         <svg

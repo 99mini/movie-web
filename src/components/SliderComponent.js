@@ -34,18 +34,6 @@ const SliderDiv = styled.div`
   }
 `;
 
-// const Li = styled.li`
-//   display: inline-block;
-//   position: relative;
-//   padding: 0px 8px;
-//   cursor: pointer;
-//   width: 100%;
-//   vertical-align: bottom;
-//   @media screen and (min-width: 62em) {
-//     width: 50%;
-//   }
-// `;
-
 const em = parseFloat(
   getComputedStyle(document.querySelector("body"))["font-size"]
 );
@@ -114,21 +102,19 @@ function SliderComponent({ children, data, screenInfo }) {
 
   return (
     <SliderDiv onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-      <SliderBtn direction={"prev"} onClick={onClick} isHover={isHover} />
-      <Carousel currentIndex={currentIndex}>
-        {children}
-        {/* {sliderArticleCellList.map((cell, index) => (
-            <Li key={cell.key}>
-              <SlideArticleCell
-                subtitle={cell.subtitle}
-                title={cell.title}
-                explanation={cell.explanation}
-                thumbnailSrc={cell.thumbnailSrc}
-              ></SlideArticleCell>
-            </Li>
-          ))} */}
-      </Carousel>
-      <SliderBtn direction={"next"} onClick={onClick} isHover={isHover} />
+      <SliderBtn
+        direction={"prev"}
+        onClick={onClick}
+        screenInfo={screenInfo}
+        isHover={isHover}
+      />
+      <Carousel currentIndex={currentIndex}>{children}</Carousel>
+      <SliderBtn
+        direction={"next"}
+        onClick={onClick}
+        screenInfo={screenInfo}
+        isHover={isHover}
+      />
     </SliderDiv>
   );
 }
