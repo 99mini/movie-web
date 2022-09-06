@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropsType from "prop-types";
 
@@ -19,10 +19,42 @@ const ArticleHoverItem = styled.article`
   transform: scale(0.83);
   width: calc((100% - 12px) * 1.2);
   height: 120%;
-  transform: ${(props) =>
-    props.isHover === SelectIndex ? "scale(1.5)" : "none"};
-  &: .exit-done {
+
+  &.exit-done,
+  &.exit-active,
+  &.enter-active,
+  &.enter-done,
+  &.enter {
     will-change: transform, opacity;
+  }
+
+  &.enter,
+  &.enter-done,
+  &.exit {
+    z-index: 4;
+    visibility: visible;
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  // TODO exit animation
+  &.exit {
+  }
+  &.exit-done {
+  }
+
+  // TODO exit active animation
+  &.exit-active {
+  }
+
+  // TODO enter active animation
+  &.enter-active {
+  }
+  // TODO enter done animation
+  &.enter-done {
+  }
+  // TODO enter animation
+  $.enter {
   }
 `;
 
@@ -40,6 +72,7 @@ const DivOpacityChanger = styled.div`
   width: 100%;
   height: 100%;
   opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.5, 0, 0.1, 1) 0s;
 `;
 
 const DivVideoInfo = styled.div`
@@ -55,8 +88,31 @@ const DivHoverWrapper = styled.div`
 `;
 
 function SlideImgHoverCell({ isHover, imgSrc }) {
+  let hoverAnimations = {
+    exit: "exit",
+    exitActive: "exit-active",
+    exitDone: "exit-done",
+    enter: "enter",
+    enterActive: "enter-active",
+    enterDone: "enter-done",
+  };
+  const [animation, setAnimation] = useState("");
+
+  // TODO
+  // 호버가 되면 enter -> enterActive -> enterDone 순으로 변경
+  // 호버가 풀리면 exit -> exitActive -> exitDone 순으로 변경
+  // state 사용하여 반응형 만들기
+  useEffect(() => {
+    if (isHover === SelectIndex.SELECTED) {
+      setAnimation(hoverAnimations.enterDone);
+      console.log("call useEffect with selected");
+      console.log(animation);
+    } else {
+      setAnimation(hoverAnimations.exitDone);
+    }
+  }, [isHover]);
   return (
-    <ArticleHoverItem isHover={isHover}>
+    <ArticleHoverItem isHover={isHover} className={animation}>
       <DivHoverImgWrapper>
         <DivOpacityChanger></DivOpacityChanger>
         <DivVideoInfo></DivVideoInfo>
