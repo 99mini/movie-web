@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+//TODO
+//오른쪽 화살표 z-index 확인
 const SliderButton = styled.button`
   cursor: pointer;
   color: rgb(186, 186, 193);
@@ -11,7 +13,10 @@ const SliderButton = styled.button`
   border: 0px;
   outline: none;
   appearance: none;
-  background: linear-gradient(90deg, rgb(0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
+  background: ${(props) =>
+    props.direction === "prev"
+      ? "linear-gradient(90deg, rgb(0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%)"
+      : "linear-gradient(270deg, rgb(0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%)"};
   display: ${(props) => (props.isHover ? "block" : "none")};
   position: absolute;
   top: 0px;

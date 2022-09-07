@@ -105,8 +105,6 @@ function SlideImgHoverCell({ isHover, imgSrc }) {
   useEffect(() => {
     if (isHover === SelectIndex.SELECTED) {
       setAnimation(hoverAnimations.enterDone);
-      console.log("call useEffect with selected");
-      console.log(animation);
     } else {
       setAnimation(hoverAnimations.exitDone);
     }

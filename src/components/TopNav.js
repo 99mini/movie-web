@@ -185,9 +185,7 @@ function TopNav() {
   const [isClicked, setIsClicked] = useState(false);
 
   const onClick = () => {
-    console.log("onClick");
     setIsClicked((prev) => !prev);
-    console.log(isClicked);
   };
 
   return (

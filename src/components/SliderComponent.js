@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropsTpyes from "prop-types";
 
@@ -43,21 +43,21 @@ function SliderComponent({ children, data, screenInfo }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   let screen;
+
   switch (screenInfo) {
     case "Main":
       screen = window.innerWidth < 62 * em ? 1 : 2;
       break;
     case "Small":
       let currentWindowWidth = window.innerWidth;
-
       if (currentWindowWidth < 56 * em) {
-        screen = 4;
-      } else if (currentWindowWidth < 62 * em) {
-        screen = 5;
-      } else if (currentWindowWidth < 71 * em) {
-        screen = 6;
-      } else {
         screen = 3;
+      } else if (currentWindowWidth < 62 * em) {
+        screen = 4;
+      } else if (currentWindowWidth < 71 * em) {
+        screen = 5;
+      } else {
+        screen = 6;
       }
       break;
 
@@ -68,7 +68,7 @@ function SliderComponent({ children, data, screenInfo }) {
       break;
   }
 
-  let showingArticle = parseInt(data.length / screen);
+  let showingArticle = parseInt(Math.ceil(data.length / screen));
 
   const onMouseEnter = () => {
     setHover(true);

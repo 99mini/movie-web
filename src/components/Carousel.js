@@ -10,6 +10,9 @@ const UlArticle = styled.ul`
   transition: transform 0.4s cubic-bezier(0.5, 0, 0.1, 1) 0s;
 `;
 
+// TODO
+// SmallSection 움직임
+
 function Carousel({ children, currentIndex }) {
   return <UlArticle currentIndex={currentIndex}>{children}</UlArticle>;
 }

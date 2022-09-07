@@ -25,6 +25,7 @@ const CssTransLeft = css`
   @media screen and (min-width: 71em) {
     transform: translate3d(-10%, 0px, 0px);
   }
+  transform: translate3d(-20%, 0px, 0px);
 `;
 const CssTransRight = css`
   @media screen and (min-width: 56em) {
@@ -36,17 +37,19 @@ const CssTransRight = css`
   @media screen and (min-width: 71em) {
     transform: translate3d(10%, 0px, 0px);
   }
+  transform: translate3d(20%, 0px, 0px);
 `;
 const CssTransSelected = css`
   @media screen and (min-width: 56em) {
     transform: translate3d(0%, 0px, 0px);
   }
   @media screen and (min-width: 62em) {
-    transform: translate3d(5%, 0px, 0px);
+    transform: translate3d(0%, 0px, 0px);
   }
   @media screen and (min-width: 71em) {
     transform: translate3d(0%, 0px, 0px);
   }
+  transform: translate3d(0%, 0px, 0px);
 `;
 
 const Li = styled.li`
@@ -55,7 +58,7 @@ const Li = styled.li`
   vertical-align: top;
   padding: 0px 6px;
   cursor: pointer;
-  width: 33.3333%;
+  width: ${100 / 3}%;
   transition: transform 0.4s cubic-bezier(0.5, 0, 0.1, 1) 0s;
 
   @media screen and (min-width: 56em) {
@@ -65,7 +68,7 @@ const Li = styled.li`
     width: 20%;
   }
   @media screen and (min-width: 71em) {
-    width: 16%;
+    width: ${100 / 6}%;
   }
 
   ${(props) => {
